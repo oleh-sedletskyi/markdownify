@@ -17,7 +17,6 @@
            (js/setTimeout #(reset! flash-message nil) ms))))
 
 (defn md->html [md]
-  ;; (. markdown-converter makeHtml md)
   (.makeHtml markdown-converter md))
 
 (defn html->md [html]
@@ -57,8 +56,7 @@
   [:div
    [:div
     {:style {:position :absolute
-             :text-align :center
-             :left 0
+             :text-align :cente             :left 0
              :right 0
              :background-color :yellow
              :max-width 250
@@ -84,9 +82,6 @@
       {:on-change (fn [e]
                     (reset! text-state {:format :md
                                         :value (-> e .-target .-value)}))
-       ;; (reset! markdown (-> e .-target .-value))
-       ;; (reset! html (md->html (-> e .-target .-value))))
-
        :value (->md @text-state)
        :style {:resize "none"
                :height "500px"
@@ -106,10 +101,7 @@
      [:textarea
       {:on-change (fn [e]
                     (reset! text-state {:format :html
-                                        :value (-> e .-target .-value)})
-                    ;; (reset! markdown (html->md (-> e .-target .-value)))
-                    ;; (reset! html (-> e .-target .-value))
-                    )
+                                        :value (-> e .-target .-value)}))
        :value (->html @text-state)
        :style {:resize "none"
                :height "500px"
